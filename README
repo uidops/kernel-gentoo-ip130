@@ -1,0 +1,32 @@
+Gentoo linux kernel configuration for Lenovo ideapad 130-15IKB laptop
+
+
+OS: Gentoo
+CPU: Intel core i5 8265u
+GPU 1: Intel Corporation UHD Graphics 620
+GPU 2: NVIDIA Corporation GM108M [GeForce MX110]
+Ethernet controller: Realtek Semiconductor Co., Ltd. RTL810xE PCI Express Fast Ethernet controller
+Network controller: Realtek Semiconductor Co., Ltd. RTL8821CE 802.11ac PCIe Wireless Network Adapter
+USB controller: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller
+Controller: Intel Corporation Sunrise Point-LP SATA Controller [AHCI mode]
+Memory controller: Intel Corporation Sunrise Point-LP PMC
+Audio device: Intel Corporation Sunrise Point-LP HD Audio
+
+
+wireless driver issuse (For me iwd not work but NetworkManager is working):
+    If rtw88_8821ce not worked, build and install this driver:
+        https://github.com/tomaspinho/rtl8821ce/ :
+            git clone https://github.com/tomaspinho/rtl8821ce.git
+            cd rtl8821ce/
+            make -j8 -l8
+            (doas|sudo) make install
+    
+    or install it from trolltoo overlay:
+        (doas|sudo) layman -a trolltoo
+        (doas|sudo) emerge -av net-wireless/rtl8821ce-driver
+    
+    and add this line to /etc/modprobe.d/wifi.conf:
+        blacklist rtw88_8821ce
+
+
+

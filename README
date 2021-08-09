@@ -14,20 +14,27 @@ Memory controller: Intel Corporation Sunrise Point-LP PMC
 Audio device: Intel Corporation Sunrise Point-LP HD Audio
 
 
-wireless driver issuse (For me iwd not work but NetworkManager is working):
+wireless driver problem:
     If rtw88_8821ce not worked, build and install this driver:
         https://github.com/tomaspinho/rtl8821ce/ :
-            git clone https://github.com/tomaspinho/rtl8821ce.git
-            cd rtl8821ce/
-            make -j8 -l8
-            (doas|sudo) make install
+            $ git clone https://github.com/tomaspinho/rtl8821ce.git
+            $ cd rtl8821ce/
+            $ make -j8 -l8
+            $ (doas|sudo) make install
     
-    or install it from trolltoo overlay:
-        (doas|sudo) layman -a trolltoo
-        (doas|sudo) emerge -av net-wireless/rtl8821ce-driver
+    or install it from uidops-overlay:
+        $ (doas|sudo) wget https://raw.githubusercontent.com/siruidops/uidops-overlay/main/uidops-overlay.conf -O /etc/portage/repos.conf/uidops-overlay.conf
+        $ (doas|sudo) emerge -av net-wireless/rtl8821ce-driver
     
     and add this line to /etc/modprobe.d/wifi.conf:
         blacklist rtw88_8821ce
 
+!! rtw88_8821ce driver needs linux-firmware package
+    you can install that using `emerge -av sys-kernel/linux-firmware`
+
+rtw88_8821ce problem:
+    If your os freezes after a few time after boot with rtw88_8821ce driver
+        add this line to /etc/modprobe.d/wifi.conf:
+            options rtw88_pci disable_aspm=1
 
 

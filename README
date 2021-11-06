@@ -1,5 +1,5 @@
 Gentoo linux kernel (gentoo-sources) configuration for Lenovo ideapad 130-15IKB laptop
-version: 5.15.0
+version: 5.15.1
 
 
 OS: Gentoo

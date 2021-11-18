@@ -1,7 +1,7 @@
 {This's just my personal configuration, if you want to use it, you should change it}
 
 Gentoo linux kernel (gentoo-sources) configuration for Lenovo ideapad 130-15IKB laptop
-version: 5.15.2
+version: 5.15.3
 
 
 OS: Gentoo
